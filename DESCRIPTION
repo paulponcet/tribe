@@ -1,0 +1,26 @@
+Package: tribe
+Type: Package
+Title: Play with the tribe of attributes in R
+Version: 0.1.1
+Date: 2016-12-02
+Authors@R: person("Paul", "Poncet", , "paulponcet@yahoo.fr", role = c("aut", "cre"))
+Description: This package contains a few functions to make manipulation of object attributes easier. 
+    It also contains a few functions that extend the 'dplyr' package for data manipulation, 
+    and it provides a pipe operator '%at>%' similar to the magrittr '%>%', but with the 
+    additional functionality to enable attributes propagation. 
+License: MIT + file LICENSE
+LazyData: TRUE
+Depends:
+    R (>= 3.0.3)
+Imports: 
+    base2, 
+    dplyr, 
+    lazyeval, 
+    magrittr, 
+    rlist, 
+    rstudioapi
+Suggests:
+    testthat
+URL: https://github.com/paulponcet/tribe
+BugReports: https://github.com/paulponcet/tribe/issues
+RoxygenNote: 5.0.1
