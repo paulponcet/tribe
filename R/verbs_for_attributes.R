@@ -175,16 +175,16 @@ at_rename_ <- rebrand_
 #' @rdname define
 #' 
 take <-
-  function (obj,
-            at)
-  {
-    sat <- substitute(at)
-    if (is.name(sat)) {
-      take_(obj, at = deparse(sat))
-    } else if (is.numeric(sat)) {
-      take_(obj, at = sat)
-    }
+function (obj,
+          at)
+{
+  sat <- substitute(at)
+  if (is.name(sat)) {
+    take_(obj, at = deparse(sat))
+  } else if (is.numeric(sat)) {
+    take_(obj, at = sat)
   }
+}
 
 #' @export
 #' @rdname define
@@ -196,16 +196,16 @@ at_slice <- take
 #' @rdname define
 #' 
 take_ <-
-  function(obj,
-           at)
-  {
-    if (inherits(at, "formula")) {
-      at <- at[[2L]]
-      at <- deparse(substitute(at))
-    }
-    #attr(obj, at, exact = TRUE)
-    tribe(obj)[[at]]
+function(obj,
+         at)
+{
+  if (inherits(at, "formula")) {
+    at <- at[[2L]]
+    at <- deparse(substitute(at))
   }
+  #attr(obj, at, exact = TRUE)
+  tribe(obj)[[at]]
+}
 
 #' @export
 #' @rdname define

@@ -1,8 +1,7 @@
 # Check whether a symbol is a valid pipe.
-#
+# 
 # @param pipe A quoted symbol
 # @return logical - TRUE if a valid pipe, FALSE otherwise.
-# @author Stefan Milton Bache and Hadley Wickham; '%at>%' and '%<at>%' added by Paul Poncet
 is_pipe <- function(pipe)
 {
   is.function(pipe) && 
@@ -20,25 +19,6 @@ is_parenthesized <- function(expr)
   is.call(expr) && identical(expr[[1L]], quote(`(`))
 }
 
-# Check whether a pipe is a tee.
-#
-# @param pipe A (quoted) pipe
-# @return logical - TRUE if pipe is a tee, FALSE otherwise.
-# @author Stefan Milton Bache and Hadley Wickham
-#is_tee <- function(pipe)
-#{
-#  identical(pipe, quote(`%T>%`))
-#}
-
-# Check whether a pipe is the dollar pipe.
-#
-# @param pipe A (quoted) pipe
-# @return logical - TRUE if pipe is the dollar pipe, FALSE otherwise.
-# @author Stefan Milton Bache and Hadley Wickham
-#is_dollar <- function(pipe)
-#{
-#  identical(pipe, quote(`%$%`))
-#}
 
 # Check whether a pipe is the compound assignment pipe operator
 #
