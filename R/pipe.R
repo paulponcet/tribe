@@ -39,8 +39,8 @@
 #' # passes through dplyr verbs
 #' tribe(df %>% mutate(z=3))
 #' 
-#' # With the pipe '%at>%', most attributes are kept
-#' tribe(df %at>% mutate(z=3))
+#' # With the pipe '%@>%', most attributes are kept
+#' tribe(df %@>% mutate(z=3))
 #' 
 #' # One can create a new pipe to adjust attributes propagation settings
 #' "%newpipe>%" <- make_pipe(propagate="none", keep_also = "example")
@@ -118,10 +118,10 @@ function(propagate, # = getOption("propagate")
 #' @export
 #' @rdname make_pipe
 #' 
-`%at>%` <- make_pipe(propagate = "most", keep_also = "class")
+`%@>%` <- make_pipe(propagate = "most", keep_also = "class")
 
 
 #' @export
 #' @rdname make_pipe
 #' 
-`%<at>%` <- make_pipe(propagate = "most", keep_also = "class")
+`%<@>%` <- make_pipe(propagate = "most", keep_also = "class")
