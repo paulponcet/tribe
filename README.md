@@ -1,5 +1,7 @@
 # tribe
 
+[![Travis-CI Build Status](https://travis-ci.org/paulponcet/tribe.svg?branch=master)](https://travis-ci.org/paulponcet/tribe)
+
 Play with the tribe of attributes in R.  
 
 
