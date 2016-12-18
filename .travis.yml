@@ -4,6 +4,3 @@ language: R
 cache: packages
 warnings_are_errors: false
 r_github_packages: paulponcet/base2
-
-after_success:
-  - Rscript -e 'covr::codecov()'
