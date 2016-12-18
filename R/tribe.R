@@ -7,7 +7,7 @@
 #' will return \code{NULL}, \code{tribe} will return an empty named list). 
 #' 
 #' @param obj
-#' An object. 
+#' An object.
 #' 
 #' @param value
 #' An appropriate named list of attributes, or \code{NULL}. 
