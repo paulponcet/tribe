@@ -19,6 +19,7 @@ Imports:
     magrittr, 
     rlist, 
     rstudioapi
+VignetteBuilder: knitr
 Suggests:
     knitr, 
     testthat

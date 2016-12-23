@@ -80,12 +80,14 @@ function(obj,
   stopifnot(is.character(p) && length(p) == 1L && p %in% c("many", "all", "most", "some", "none"))
 
   if (p == "all") {
-    warning("the call 'propagate = 'all' should be used with care, see '?shield' for details")
+    warning("the call 'propagate = 'all' should be used with care, see '?shield' for details", 
+            call. = FALSE)
     tribe(obj) <- at   # very dangerous
   } else if (p == "most") {
     tribe(obj) <- rlist::list.merge(at, tribe(obj))
   } else if (p == "none") {
-    warning("the call 'propagate = 'none' should be used with care, see '?shield' for details")
+    warning("the call 'propagate = 'none' should be used with care, see '?shield' for details", 
+            call. = FALSE)
     tribe(obj) <- NULL # a bit dangerous too
   } else if (p == "many") {
     tribe(obj) <- rlist::list.merge(tribe(obj), at)
