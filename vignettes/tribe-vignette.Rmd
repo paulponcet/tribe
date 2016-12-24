@@ -1,0 +1,105 @@
+---
+title: 'Play with the tribe of attributes in R'
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Play with the tribe of attributes in R}
+  %\VignetteEngine{knitr::rmarkdown}
+  \usepackage[utf8]{inputenc}
+---
+
+```{r, echo = FALSE, message = FALSE, warning = FALSE}
+knitr::opts_chunk$set(collapse = TRUE, comment = "#>")
+library(dplyr)
+library(tribe)
+print.list <- function(x, ...) str(x)
+```
+
+
+## Verbs for easy manipulation of attributes
+
+The tribe package provides verbs for easy manipulation of attributes. 
+These verbs are: 
+
+  - `define` to create or modify attributes; 
+  - `keep` to select attributes (and `NULL`ify the others);
+  - `rebrand` to rename attributes; 
+  - `take` to extract attributes. 
+
+The function `tribe` is a convenient synonym of `attributes`, 
+with the slight difference that it always returns a named list. 
+
+```{r}
+df <- data.frame(x = 1:2, y = 2:3) %>%
+  define(example="yes", package="dplyr")
+tribe(df)
+```
+
+Use `take` to extract attribute values: 
+
+```{r}
+take(df, names)
+```
+
+Each verb has its standard evaluation version; for instance `take_` is the standard evaluation version of `take`: 
+
+```{r}
+take_(df, "class")
+take_(df, ~ package)
+```
+
+Similarly `define_` is the standard evaluation version of `define`: 
+
+```{r}
+df <- df %>%
+  define_(package = ~ NULL, # deletes the attribute called 'package'
+          example = ~ "no")
+tribe(df)
+```
+
+
+## A new pipe that preserves attributes
+
+The tribe package builds on the magrittr package and brings a new pipe `%@>%` similar to the pipe `%>%` that enables propagation of attributes.  
+
+```{r}
+df <- data.frame(x = 1:2, y = 2:3) %>%
+ define(example="yes",
+        package="tribe", 
+        class = c("my_tbl", "data.frame"))
+```
+
+Attributes just created are often lost when the object passes through dplyr verbs, for instance: 
+
+```{r}
+tribe(df %>% mutate(z=3))
+```
+
+With the new pipe `%@>%`, most attributes propagate: 
+
+```{r}
+tribe(df %@>% mutate(z=3))
+```
+
+Behind the scene, the `shield` function operates: 
+
+```{r}
+# Attributes are lost when the object passes through dplyr verbs
+df2 <- df %>% mutate(z = 3)
+tribe(df2)
+
+# Most attributes are kept
+df3 <- shield(df2, tribe(df), propagate = "most")
+tribe(df3)
+
+# To keep the class, use 'keep_also'
+df4 <- shield(df2, tribe(df), propagate = "most", keep_also = "class")
+tribe(df4)
+```
+
+One can create a new pipe to adjust attributes propagation settings: 
+
+```{r, warning = FALSE}
+"%newpipe>%" <- make_pipe(propagate="none", keep_also = "example")
+tribe(df %newpipe>% mutate(z=3))
+```

@@ -32,10 +32,8 @@ library(magrittr)
 library(tribe)
 
 # Use 'define' to create or modify attributes
-df <- data.frame(x = sample(10, 5, rep = TRUE),
-                 y = sample(10, 5, rep = TRUE)) %>%
-  define(example="yes",
-         package="dplyr")
+df <- data.frame(x = 1:2, y = 2:3) %>%
+  define(example="yes", package="dplyr")
 tribe(df)
 
 # Use 'take' to extract attribute values
@@ -61,8 +59,7 @@ enables propagation of attributes.
 library(dplyr)
 library(tribe)
 
-df <- data.frame(x = sample(10, 5, rep = TRUE),
-                y = sample(10, 5, rep = TRUE)) %>%
+df <- data.frame(x = 1:2, y = 2:3) %>%
  define(example="yes",
         package="tribe", 
         class = c("my_tbl", "data.frame"))
