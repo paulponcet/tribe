@@ -20,7 +20,7 @@
 #' \code{\link[base]{attributes<-}}, 
 #' \code{\link[base]{mostattributes<-}}. 
 #' 
-#' @importFrom base2 namedlist
+#' @importFrom base2 nlist
 #' @export
 #' 
 tribe <- 
@@ -28,7 +28,7 @@ function(obj)
 {
   at <- attributes(obj)
   if (is.null(at)) {
-    return(base2::namedlist())
+    return(base2::nlist())
   }
   at
 }
