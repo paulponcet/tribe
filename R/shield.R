@@ -41,7 +41,7 @@
 #' @return 
 #' The object \code{obj} with possibly different attributes. 
 #' 
-#' @importFrom base2 is.empty
+#' @importFrom bazar is.empty
 #' @importFrom rlist list.merge
 #' @export
 #' 
@@ -73,10 +73,10 @@ function(obj,
          propagate = "some", 
          keep_also = NULL)
 {
-  if (base2::is.empty(at)) return(obj)
+  if (bazar::is.empty(at)) return(obj)
 
   p <- propagate
-  if (base2::is.empty(p)) p <- "some"
+  if (bazar::is.empty(p)) p <- "some"
   stopifnot(is.character(p) && length(p) == 1L && p %in% c("many", "all", "most", "some", "none"))
 
   if (p == "all") {

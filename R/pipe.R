@@ -96,6 +96,7 @@ function(propagate, # = getOption("propagate")
       
       # compute the result by applying the function to the LHS
       result <- withVisible(eval(quote(`_fseq`(`_lhs`)), env, env))
+      print(names(tribe(result[["value"]])))
       value  <- shield(result[["value"]], at, propagate = propagate, keep_also = keep_also)
       
       # If compound assignment pipe operator is used, assign result

@@ -20,7 +20,7 @@
 #' \code{\link[base]{attributes<-}}, 
 #' \code{\link[base]{mostattributes<-}}. 
 #' 
-#' @importFrom base2 nlist
+#' @importFrom bazar nlist
 #' @export
 #' 
 tribe <- 
@@ -28,19 +28,19 @@ function(obj)
 {
   at <- attributes(obj)
   if (is.null(at)) {
-    return(base2::nlist())
+    return(bazar::nlist())
   }
   at
 }
 
 
-#' @importFrom base2 is.empty
+#' @importFrom bazar is.empty
 #' @export
 #' @rdname tribe
 #' 
 "tribe<-" <- 
 function(obj, value)
 {
-  attributes(obj) <- if (base2::is.empty(value)) NULL else value
+  attributes(obj) <- if (bazar::is.empty(value)) NULL else value
   obj
 }

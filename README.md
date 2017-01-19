@@ -2,8 +2,6 @@
 
 [![Travis-CI Build Status](https://travis-ci.org/paulponcet/tribe.svg?branch=master)](https://travis-ci.org/paulponcet/tribe)
 
-[![CRAN\_Status\_Badge](http://www.r-pkg.org/badges/version/tribe)](http://cran.r-project.org/package=tribe)
-
 Play with the tribe of attributes in R. 
 
 
