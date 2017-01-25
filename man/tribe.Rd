@@ -3,16 +3,24 @@
 \name{tribe}
 \alias{tribe}
 \alias{tribe<-}
+\alias{untribe}
 \title{Object attribute list}
 \usage{
-tribe(obj)
+tribe(obj, keep_obj = FALSE)
 
 tribe(obj) <- value
+
+untribe(x)
 }
 \arguments{
 \item{obj}{An object.}
 
+\item{keep_obj}{logical. If \code{TRUE}, \code{obj} is passed as an attribute to 
+the result (useful in combination of \code{untribe}).}
+
 \item{value}{An appropriate named list of attributes, or \code{NULL}.}
+
+\item{x}{A list (of attributes) to be \code{untribe}d.}
 }
 \value{
 A named list, the attributes of \code{obj}.
@@ -21,6 +29,16 @@ A named list, the attributes of \code{obj}.
 The function \code{tribe} is identical to \code{\link[base]{attributes}}, 
 expect that it always returns a named list (thus, when \code{attributes} 
 will return \code{NULL}, \code{tribe} will return an empty named list).
+}
+\examples{
+library(lplyr)
+A <- c(x = 1, y = 2, z = 3) \%>\% 
+  define(package = "trib?")
+A \%>\% 
+  tribe(keep_obj = TRUE) \%@>\% 
+  mutate(package = "tribe") \%>\% 
+  untribe()
+
 }
 \seealso{
 \code{\link[base]{attributes}}, 

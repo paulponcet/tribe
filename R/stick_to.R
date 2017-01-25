@@ -1,4 +1,28 @@
-
+#' @title 
+#' Work on a specific attribute within a pipeline
+#' 
+#' @description 
+#' The functions \code{stick_to} and \code{unstick} enable 
+#' to select an attribute within a pipe and work on it. 
+#' 
+#' It must be combined with the \code{\%@@>\%} pipe to work properly, 
+#' see the example below. 
+#' 
+#' @param obj
+#' An object with an \code{at} attribute. 
+#' 
+#' @param at
+#' The name of the attribute to be considered. 
+#' 
+#' @param x
+#' An object to be unsticked. 
+#' Must have \code{".obj_stick"} and \code{".at_stick"} attributes. 
+#' 
+#' @return 
+#' \code{stick_to} basically inverses the roles of \code{.data} and \code{at}, 
+#' meaning that \code{.data} becomes an attribute of the selected attribute. 
+#' \code{unstick} makes the inverse operation. 
+#' 
 #' @export
 #' 
 #' @examples 
@@ -50,14 +74,10 @@ function(obj, at)
 unstick <-
 function(x)
 {
-  #print(x)
-  print(names(tribe(x)))
   obj <- attr(x, ".obj_stick")
   at <- attr(x, ".at_stick")
-  #print(at)
   attr(x, ".obj_stick") <- NULL
   attr(x, ".at_stick") <- NULL
-  #tribe(obj)[[at]] <- x
   attr(obj, at) <- x
   obj
 }

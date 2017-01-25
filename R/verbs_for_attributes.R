@@ -57,8 +57,8 @@
 #' tribe(df)
 #' 
 define <-
-function (obj,
-          ...)
+function(obj,
+         ...)
 {
   define_(obj, .dots = lazyeval::lazy_dots(...))
 }
@@ -108,7 +108,8 @@ function(obj,
 #' @rdname define
 #' 
 keep <- 
-function(obj, ...)
+function(obj, 
+         ...)
 {
   keep_(obj, .dots = lazyeval::lazy_dots(...))
 }
@@ -124,7 +125,9 @@ at_select <- keep
 #' @rdname define
 #' 
 keep_ <-
-function(obj, ..., .dots)
+function(obj, 
+         ..., 
+         .dots)
 {
   tr <- tribe(obj)
   tribe(obj) <- dplyr::select_(tr, ..., .dots = .dots)
@@ -142,7 +145,8 @@ at_select_ <- keep_
 #' @rdname define
 #' 
 rebrand <- 
-function(obj, ...)
+function(obj, 
+         ...)
 {
   rebrand_(obj, .dots = lazyeval::lazy_dots(...))
 }
@@ -158,7 +162,9 @@ at_rename <- rebrand
 #' @rdname define
 #' 
 rebrand_ <- 
-function(obj, ..., .dots)
+function(obj, 
+         ..., 
+         .dots)
 {
   tr <- tribe(obj)
   tribe(obj) <- dplyr::rename_(tr, ..., .dots = .dots)
@@ -175,8 +181,8 @@ at_rename_ <- rebrand_
 #' @rdname define
 #' 
 take <-
-function (obj,
-          at)
+function(obj,
+         at)
 {
   sat <- substitute(at)
   if (is.name(sat)) {

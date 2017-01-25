@@ -60,7 +60,7 @@ tribe(df)
 
 ## A new pipe that preserves attributes
 
-The tribe package builds on the magrittr package and brings a new pipe `%@>%` similar to the pipe `%>%` that enables propagation of attributes.  
+The tribe package builds on the magrittr package and brings a new pipe `%@>%` similar to the pipe `%>%` that enables propagation of attributes. 
 
 ```{r}
 df <- data.frame(x = 1:2, y = 2:3) %>%

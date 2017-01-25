@@ -82,7 +82,7 @@ library(dplyr)
 df <- data.frame(x = sample(10, 5, rep = TRUE),
                  y = sample(10, 5, rep = TRUE)) \%>\%
   define(example="yes",
-          package="dplyr")
+         package="dplyr")
 tribe(df)
 
 take(df, names)
