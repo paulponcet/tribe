@@ -45,4 +45,3 @@ A \%>\%
 \code{\link[base]{attributes<-}}, 
 \code{\link[base]{mostattributes<-}}.
 }
-

@@ -3,6 +3,7 @@
 export("%<@>%")
 export("%@%")
 export("%@>%")
+export("%try>%")
 export("tribe<-")
 export(at_mutate)
 export(at_mutate_)

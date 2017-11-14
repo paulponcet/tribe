@@ -16,6 +16,10 @@
 #' @param rhs
 #' Right-hand side of the pipe. 
 #' 
+#' @param try
+#' logical. If \code{TRUE} and the pipe \code{x > f} generates an error, 
+#' then the pipe \code{x try> f} returns \code{x} unchanged silently. 
+#' 
 #' @author Stefan Milton Bache and Hadley Wickham for the 
 #' original \code{pipe} function in package \pkg{magrittr}; 
 #' Paul Poncet for the modifications introduced. 
@@ -48,7 +52,8 @@
 #' 
 make_pipe <- 
 function(propagate, # = getOption("propagate") 
-         keep_also = NULL)
+         keep_also = NULL, 
+         try = FALSE)
 {
   pipe <- function(lhs, rhs)
   {
@@ -67,12 +72,14 @@ function(propagate, # = getOption("propagate")
 
     # Create the list of functions defined by the right-hand sides.
     env[["_function_list"]] <- 
-      lapply(1:length(rhss), 
+      lapply(seq_along(rhss), 
              function(i) wrap_function(rhss[[i]], pipes[[i]], parent))
 
     # Create a function which applies each of the above functions in turn.
     env[["_fseq"]] <-
-     `class<-`(eval(quote(function(value) magrittr::freduce(value, `_function_list`)), 
+     `class<-`(eval(quote(function(value) { 
+         magrittr::freduce(value, `_function_list`) 
+       }), 
                     env, env), c("fseq", "function"))
  
     # make freduce available to the resulting function 
@@ -83,11 +90,19 @@ function(propagate, # = getOption("propagate")
     if (is_placeholder(lhs)) {
       # return the function itself.
       f <- env[["_fseq"]]
-      function(.) {
-        at <- attributes(.)
-        shield(f(.), at, propagate = propagate, keep_also = keep_also)
+      if (try) {
+        function(.) {
+          at <- attributes(.)
+          tryCatch(shield(f(.), at, 
+                          propagate = propagate, keep_also = keep_also), 
+                   error = function(e) .)
+        }
+      } else {
+        function(.) {
+          at <- attributes(.)
+          shield(f(.), at, propagate = propagate, keep_also = keep_also)
+        }
       }
-      #env[["_fseq"]]
       
     } else {
       # evaluate the LHS
@@ -95,9 +110,17 @@ function(propagate, # = getOption("propagate")
       at <- attributes(env[["_lhs"]])
       
       # compute the result by applying the function to the LHS
-      result <- withVisible(eval(quote(`_fseq`(`_lhs`)), env, env))
+      if (try) {
+        result <- tryCatch(withVisible(eval(quote(`_fseq`(`_lhs`)), env, env)), 
+                           error = function(e) {
+                             withVisible(eval(quote(`_lhs`), env, env))
+                           })
+      } else {
+        result <- withVisible(eval(quote(`_fseq`(`_lhs`)), env, env))
+      }
       #print(names(tribe(result[["value"]])))
-      value  <- shield(result[["value"]], at, propagate = propagate, keep_also = keep_also)
+      value  <- shield(result[["value"]], at, 
+                       propagate = propagate, keep_also = keep_also)
       
       # If compound assignment pipe operator is used, assign result
       if (is_compound_pipe(pipes[[1L]])) {
@@ -126,3 +149,10 @@ function(propagate, # = getOption("propagate")
 #' @rdname make_pipe
 #' 
 `%<@>%` <- make_pipe(propagate = "most", keep_also = "class")
+
+
+#' @export
+#' @rdname make_pipe
+#' 
+`%try>%` <- make_pipe(propagate = "some", try = TRUE)
+

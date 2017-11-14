@@ -77,16 +77,20 @@ function(obj,
 
   p <- propagate
   if (bazar::is.empty(p)) p <- "some"
-  stopifnot(is.character(p) && length(p) == 1L && p %in% c("many", "all", "most", "some", "none"))
+  stopifnot(is.character(p) && 
+              length(p) == 1L && 
+              p %in% c("many", "all", "most", "some", "none"))
 
   if (p == "all") {
-    warning("the call 'propagate = 'all' should be used with care, see '?shield' for details", 
+    warning("the call 'propagate = 'all' should be used with care, 
+             see '?shield' for details", 
             call. = FALSE)
     tribe(obj) <- at   # very dangerous
   } else if (p == "most") {
     tribe(obj) <- rlist::list.merge(at, tribe(obj))
   } else if (p == "none") {
-    warning("the call 'propagate = 'none' should be used with care, see '?shield' for details", 
+    warning("the call 'propagate = 'none' should be used with care, 
+             see '?shield' for details", 
             call. = FALSE)
     tribe(obj) <- NULL # a bit dangerous too
   } else if (p == "many") {
@@ -94,7 +98,8 @@ function(obj,
   }
     
   if (!is.null(keep_also))
-    tribe(obj) <- rlist::list.merge(tribe(obj), at[intersect(names(at), keep_also)])
+    tribe(obj) <- rlist::list.merge(tribe(obj), 
+                                    at[intersect(names(at), keep_also)])
   
   #for (i in seq_along(keep_also)) {
   #  attr(obj, keep_also[i]) = at[[keep_also[i]]]    

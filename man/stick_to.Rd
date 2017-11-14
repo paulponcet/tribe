@@ -51,4 +51,3 @@ df \%>\%
 observations(df)
 
 }
-

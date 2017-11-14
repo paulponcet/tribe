@@ -1,7 +1,12 @@
+# tribe 0.1.6
+
+* New argument 'try' in 'make_pipe()' to create a new pipe '%try>%'. 
+
+
 # tribe 0.1.5
 
-* New argument 'keep_obj' in tribe()
-* New function untribe()
+* New argument 'keep_obj' in 'tribe()'.
+* New function 'untribe()'.
 
 
 # tribe 0.1.4
@@ -11,7 +16,7 @@
 
 # tribe 0.1.3
 
-* stick_to() and unstick() added. 
+* 'stick_to()' and 'unstick()' added. 
 
 
 # tribe 0.1.2

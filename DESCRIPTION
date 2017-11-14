@@ -1,8 +1,8 @@
 Package: tribe
 Type: Package
 Title: Play with the Tribe of Attributes in R
-Version: 0.1.5
-Date: 2017-01-25
+Version: 0.1.6
+Date: 2017-11-12
 Authors@R: c(person("Paul", "Poncet", , "paulponcet@yahoo.fr", role = c("aut", "cre")), 
     person("Stefan Milton", "Bache", , "stefan@stefanbache.dk", role = "aut", 
            comment = "for functions copied or modified from the 'magrittr' package"), 
@@ -33,4 +33,4 @@ Suggests:
     testthat
 URL: https://github.com/paulponcet/tribe
 BugReports: https://github.com/paulponcet/tribe/issues
-RoxygenNote: 5.0.1
+RoxygenNote: 6.0.1

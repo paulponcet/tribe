@@ -66,4 +66,3 @@ df4 <- shield(df2, tribe(df), propagate = "most", keep_also = "class")
 tribe(df4)
 
 }
-
