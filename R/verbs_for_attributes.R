@@ -2,16 +2,16 @@
 #' Manipulate attributes in a dplyr fashion
 #'
 #' @description 
-#' The function \code{define} (synonym: \code{at_mutate}) 
+#' The function \code{at_mutate} 
 #' adds or changes attributes to \code{obj}. 
 #' 
-#' The function \code{keep} (synonym: \code{at_select}) 
+#' The function \code{at_select} 
 #' selects attributes of \code{obj}, and removes the others. 
 #' 
-#' The function \code{rebrand} (synonym: \code{at_rename}) 
+#' The function \code{at_rename} 
 #' renames attributes of \code{obj}. 
 #' 
-#' The function \code{take} (synonym: \code{at_slice}) 
+#' The function \code{at_slice} 
 #' chooses a specific attribute and returns it. 
 #'
 #' @param obj
@@ -27,7 +27,7 @@
 #' Attribute to be obtained.
 #' 
 #' @return 
-#' \code{take} returns the attribute chosen. 
+#' \code{at_slice} returns the attribute chosen. 
 #' The other functions return \code{obj} with possibly modified attributes. 
 #' 
 #' @seealso \code{\link{structure}}, \code{\link{attributes}}
@@ -39,55 +39,46 @@
 #' library(dplyr)
 #' df <- data.frame(x = sample(10, 5, rep = TRUE),
 #'                  y = sample(10, 5, rep = TRUE)) %>%
-#'   define(example="yes",
-#'          package="dplyr")
+#'   at_mutate(example="yes",
+#'             package="dplyr")
 #' tribe(df)
 #'
-#' take(df, names)
-#' take_(df, "class")
-#' take_(df, ~ package)
+#' at_slice(df, names)
+#' at_slice_(df, "class")
+#' at_slice_(df, ~ package)
 #'
 #' df <- df %>%
-#'   define_(package = ~ NULL,
-#'           example = ~ "no")
+#'   at_mutate_(package = ~ NULL,
+#'              example = ~ "no")
 #' tribe(df)
 #' 
 #' df <- df %>% 
-#'   define_(.dots = list(x =~ 2, y =~ c(3,4)))
+#'   at_mutate_(.dots = list(x =~ 2, y =~ c(3,4)))
 #' tribe(df)
 #' 
-define <-
+at_mutate <-
 function(obj,
          ...)
 {
-  define_(obj, .dots = lazyeval::lazy_dots(...))
+  at_mutate_(obj, .dots = lazyeval::lazy_dots(...))
 }
 
-#' @export
-#' @rdname define
-#' 
-at_mutate <- define
 
 #' @importFrom lazyeval all_dots
 #' @export
-#' @rdname define
+#' @rdname at_mutate
 #' 
-define_ <-
+at_mutate_ <-
 function(obj,
          ...,
          .dots)
 {
   dots <- lazyeval::all_dots(.dots, ..., all_named = TRUE)
-  define_impl(obj, dots)
+  at_mutate_impl(obj, dots)
 }
 
-#' @export
-#' @rdname define
-#' 
-at_mutate_ <- define_
 
-
-define_impl <-
+at_mutate_impl <-
 function(obj,
          dots)
 {
@@ -105,26 +96,21 @@ function(obj,
 
 #' @importFrom lazyeval lazy_dots
 #' @export
-#' @rdname define
+#' @rdname at_mutate
 #' 
-keep <- 
+at_select <- 
 function(obj, 
          ...)
 {
-  keep_(obj, .dots = lazyeval::lazy_dots(...))
+  at_select_(obj, .dots = lazyeval::lazy_dots(...))
 }
-
-#' @export
-#' @rdname define
-#' 
-at_select <- keep
 
 
 #' @importFrom dplyr select_
 #' @export
-#' @rdname define
+#' @rdname at_mutate
 #' 
-keep_ <-
+at_select_ <-
 function(obj, 
          ..., 
          .dots)
@@ -134,34 +120,24 @@ function(obj,
   obj
 }
 
-#' @export
-#' @rdname define
-#' 
-at_select_ <- keep_
-
 
 #' @importFrom lazyeval lazy_dots
 #' @export
-#' @rdname define
+#' @rdname at_mutate
 #' 
-rebrand <- 
+at_rename <- 
 function(obj, 
          ...)
 {
-  rebrand_(obj, .dots = lazyeval::lazy_dots(...))
+  at_rename_(obj, .dots = lazyeval::lazy_dots(...))
 }
-
-#' @export
-#' @rdname define
-#' 
-at_rename <- rebrand
 
 
 #' @importFrom dplyr rename_
 #' @export
-#' @rdname define
+#' @rdname at_mutate
 #' 
-rebrand_ <- 
+at_rename_ <- 
 function(obj, 
          ..., 
          .dots)
@@ -171,37 +147,27 @@ function(obj,
   obj
 }
 
-#' @export
-#' @rdname define
-#' 
-at_rename_ <- rebrand_
-
 
 #' @export
-#' @rdname define
+#' @rdname at_mutate
 #' 
-take <-
+at_slice <-
 function(obj,
          at)
 {
   sat <- substitute(at)
   if (is.name(sat)) {
-    take_(obj, at = deparse(sat))
+    at_slice_(obj, at = deparse(sat))
   } else if (is.numeric(sat)) {
-    take_(obj, at = sat)
+    at_slice_(obj, at = sat)
   }
 }
 
-#' @export
-#' @rdname define
-#' 
-at_slice <- take
-
 
 #' @export
-#' @rdname define
+#' @rdname at_mutate
 #' 
-take_ <-
+at_slice_ <-
 function(obj,
          at)
 {
@@ -212,8 +178,3 @@ function(obj,
   #attr(obj, at, exact = TRUE)
   tribe(obj)[[at]]
 }
-
-#' @export
-#' @rdname define
-#' 
-at_slice_ <- take_

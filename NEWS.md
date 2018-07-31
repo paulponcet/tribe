@@ -1,3 +1,11 @@
+# tribe 0.1.7 (2018-02-20)
+
+* In the infix attribute accessor '%@%', the attribute names can now be passed
+literally (without quotes). 
+* In the verbs for attributes, 'at_xxx()' verbs are kept, while verbs 'define()', 
+'keep()', 'rebrand()', and 'take()' are removed. 
+
+
 # tribe 0.1.6
 
 * New argument 'try' in 'make_pipe()' to create a new pipe '%try>%'. 

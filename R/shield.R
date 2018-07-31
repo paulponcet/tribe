@@ -49,9 +49,9 @@
 #' library(dplyr)
 #' df <- data.frame(x = sample(10, 5, rep = TRUE),
 #'                  y = sample(10, 5, rep = TRUE)) %>%
-#'   define(example="yes",
-#'           package="dplyr", 
-#'           class = c("my_tbl", "data.frame"))
+#'   at_mutate(example="yes",
+#'             package="dplyr", 
+#'             class = c("my_tbl", "data.frame"))
 #' tribe(df)
 #' 
 #' # Attributes are lost when the object passes through dplyr verbs

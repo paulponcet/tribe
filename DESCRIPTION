@@ -1,8 +1,8 @@
 Package: tribe
 Type: Package
-Title: Play with the Tribe of Attributes in R
-Version: 0.1.6
-Date: 2017-11-12
+Title: Play with the Tribe of Attributes
+Version: 0.1.7
+Date: 2018-02-20
 Authors@R: c(person("Paul", "Poncet", , "paulponcet@yahoo.fr", role = c("aut", "cre")), 
     person("Stefan Milton", "Bache", , "stefan@stefanbache.dk", role = "aut", 
            comment = "for functions copied or modified from the 'magrittr' package"), 
@@ -10,9 +10,9 @@ Authors@R: c(person("Paul", "Poncet", , "paulponcet@yahoo.fr", role = c("aut", "
            comment = "for functions copied or modified from the 'magrittr' package"))
 Description: Functions to make manipulation of object attributes easier. 
     It also contains a few functions that extend the 'dplyr' package for data 
-    manipulation, and it provides a pipe operator '%@>%' similar to the 
-    magrittr '%>%', but with the additional functionality to enable attributes 
-    propagation. 
+    manipulation, and it provides new pipe operators, including the pipe '%@>%' 
+    similar to the 'magrittr' '%>%', but with the additional functionality to 
+    enable attributes propagation. 
 License: MIT + file LICENSE
 LazyData: TRUE
 Depends:

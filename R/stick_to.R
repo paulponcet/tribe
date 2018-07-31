@@ -62,9 +62,9 @@ function(obj, at)
     at <- deparse(substitute(at))
   }
   x <- attr(obj, at) 
-  define_(x, 
-          .obj_stick = ~ obj, 
-          .at_stick = ~ at)
+  at_mutate_(x, 
+             .obj_stick = ~ obj, 
+             .at_stick = ~ at)
 }
 
 

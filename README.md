@@ -19,10 +19,10 @@ devtools::install_github("paulponcet/tribe")
 This package provides verbs for easy manipulation of attributes. 
 These verbs are: 
 
-  - `define` to create or modify attributes; 
-  - `keep` to select attributes (and `NULL`ify the others);
-  - `rebrand` to rename attributes; 
-  - `take` to extract attributes. 
+  - `at_mutate` to create or modify attributes; 
+  - `at_select` to select attributes (and `NULL`ify the others);
+  - `at_rename` to rename attributes; 
+  - `at_slice` to extract attributes. 
 
 The function `tribe` is a convenient synonym of `attributes`, 
 with the slight difference that it always returns a named list. 
@@ -33,20 +33,20 @@ library(tribe)
 
 # Use 'define' to create or modify attributes
 df <- data.frame(x = 1:2, y = 2:3) %>%
-  define(example="yes", package="dplyr")
+  at_mutate(example="yes", package="dplyr")
 tribe(df)
 
-# Use 'take' to extract attribute values
-take(df, names)
+# Use 'at_slice' to extract attribute values
+at_slice(df, names)
 
-# 'take_' is the standard evaluation version of 'take'
-take_(df, "class")
-take_(df, ~ package)
+# 'at_slice_' is the standard evaluation version of 'at_slice'
+at_slice_(df, "class")
+at_slice_(df, ~ package)
 
-# Similarly 'define_' is the standard evaluation version of 'define'
+# Similarly 'at_mutate_' is the standard evaluation version of 'at_mutate'
 df <- df %>%
-  define_(package = ~ NULL,
-          example = ~ "no")
+  at_mutate_(package = ~ NULL,
+             example = ~ "no")
 tribe(df)
 ```
 
@@ -60,9 +60,9 @@ library(dplyr)
 library(tribe)
 
 df <- data.frame(x = 1:2, y = 2:3) %>%
- define(example="yes",
-        package="tribe", 
-        class = c("my_tbl", "data.frame"))
+ at_mutate(example="yes",
+           package="tribe", 
+           class = c("my_tbl", "data.frame"))
 
 # Attributes just created are lost when the object 
 # passes through dplyr verbs

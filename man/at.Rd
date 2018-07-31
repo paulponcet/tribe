@@ -17,7 +17,10 @@ Infix attribute accessor
 }
 \examples{
 factor(1:3) \%@\% "levels"
+factor(1:3) \%@\% levels
+
 mtcars \%@\% "class"
+mtcars \%@\% class
 
 }
 \author{

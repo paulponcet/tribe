@@ -18,11 +18,23 @@
 #' 
 #' @examples 
 #' factor(1:3) %@% "levels"
+#' factor(1:3) %@% levels
+#' 
 #' mtcars %@% "class"
+#' mtcars %@% class
 #' 
 "%@%" <- 
 function(x, 
-         name) 
+         name)
 {
+  name <- deparse(substitute(name))
+  n <- nchar(name)
+  if (substr(name, 1L, 1L) == "\"") {
+    name <- substring(name, 2L)
+    n <- n-1L
+  }
+  if (substr(name, n, n) == "\"") {
+    name <- substring(name, 1L, n-1L)
+  }
   attr(x, name, exact = TRUE)
 }

@@ -33,7 +33,7 @@
 #' @examples 
 #' library(lplyr)
 #' A <- c(x = 1, y = 2, z = 3) %>% 
-#'   define(package = "trib?")
+#'   at_mutate(package = "trib?")
 #' A %>% 
 #'   tribe(keep_obj = TRUE) %@>% 
 #'   mutate(package = "tribe") %>% 
