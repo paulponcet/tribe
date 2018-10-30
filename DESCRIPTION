@@ -2,7 +2,7 @@ Package: tribe
 Type: Package
 Title: Play with the Tribe of Attributes
 Version: 0.1.7
-Date: 2018-02-20
+Date: 2018-08-02
 Authors@R: c(person("Paul", "Poncet", , "paulponcet@yahoo.fr", role = c("aut", "cre")), 
     person("Stefan Milton", "Bache", , "stefan@stefanbache.dk", role = "aut", 
            comment = "for functions copied or modified from the 'magrittr' package"), 
