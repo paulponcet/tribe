@@ -1,6 +1,7 @@
 # tribe
 
-[![Travis-CI Build Status](https://travis-ci.org/paulponcet/tribe.svg?branch=master)](https://travis-ci.org/paulponcet/tribe)
+[![Travis-CI Build Status](https://travis-ci.org/paulponcet/tribe.svg?branch=master)](https://travis-ci.org/paulponcet/tribe) [![CRAN_Status_Badge](http://www.r-pkg.org/badges/version/tribe)](https://cran.r-project.org/package=tribe) [![](https://cranlogs.r-pkg.org/badges/tribe)](https://cran.r-project.org/package=tribe)
+
 
 Play with the tribe of attributes in R. 
 
