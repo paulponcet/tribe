@@ -27,10 +27,10 @@
 #' \code{\link[base]{attributes<-}}, 
 #' \code{\link[base]{mostattributes<-}}. 
 #' 
-#' @importFrom bazar nlist
 #' @export
 #' 
 #' @examples 
+#' \dontrun{
 #' library(lplyr)
 #' A <- c(x = 1, y = 2, z = 3) %>% 
 #'   at_mutate(package = "trib?")
@@ -38,6 +38,7 @@
 #'   tribe(keep_obj = TRUE) %@>% 
 #'   mutate(package = "tribe") %>% 
 #'   untribe()
+#' }
 #' 
 tribe <- 
 function(obj, 
@@ -45,7 +46,7 @@ function(obj,
 {
   at <- attributes(obj)
   if (is.null(at)) {
-    at <- bazar::nlist()
+    at <- nlist()
   }
   if (keep_obj) {
     #attributes(obj) <- NULL
@@ -55,14 +56,13 @@ function(obj,
 }
 
 
-#' @importFrom bazar is.empty
 #' @export
 #' @rdname tribe
 #' 
 "tribe<-" <- 
 function(obj, value)
 {
-  attributes(obj) <- if (bazar::is.empty(value)) NULL else value
+  attributes(obj) <- if (is_empty(value)) NULL else value
   obj
 }
 

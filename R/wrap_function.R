@@ -15,8 +15,7 @@
 #
 # @return a function of a single argument, named \code{.}.
 # @author Stefan Milton Bache and Hadley Wickham
-wrap_function <- function(body, pipe, env)
-{
+wrap_function <- function(body, pipe, env) {
  
   #if (is_tee(pipe)) {
   #  body <- call("{", body, quote(.))

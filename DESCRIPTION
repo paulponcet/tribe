@@ -1,8 +1,7 @@
 Package: tribe
 Type: Package
 Title: Play with the Tribe of Attributes
-Version: 0.1.7
-Date: 2018-08-02
+Version: 0.1.8
 Authors@R: c(person("Paul", "Poncet", , "paulponcet@yahoo.fr", role = c("aut", "cre")), 
     person("Stefan Milton", "Bache", , "stefan@stefanbache.dk", role = "aut", 
            comment = "for functions copied or modified from the 'magrittr' package"), 
@@ -15,22 +14,21 @@ Description: Functions to make manipulation of object attributes easier.
     enable attributes propagation. 
 License: MIT + file LICENSE
 LazyData: TRUE
+ByteCompile: TRUE
 Depends:
-    R (>= 3.1.3)
+    R (>= 3.2)
 Imports: 
-    bazar, 
-    dplyr, 
-    lazyeval, 
-    magrittr, 
-    rlist, 
-    rstudioapi
-VignetteBuilder: knitr
+    dplyr,
+    lazyeval,
+    magrittr,
+    rlang,
+    rstudioapi,
+    utils
+VignetteBuilder: 
+    knitr
 Suggests:
     knitr, 
-    ggplot2,
-    lplyr,
-    observer,
     testthat
 URL: https://github.com/paulponcet/tribe
 BugReports: https://github.com/paulponcet/tribe/issues
-RoxygenNote: 6.0.1
+RoxygenNote: 7.0.0

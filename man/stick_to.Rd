@@ -33,21 +33,23 @@ It must be combined with the \code{\%@>\%} pipe to work properly,
 see the example below.
 }
 \examples{
+\dontrun{
 library(dplyr)
 library(observer)
 
-df <- ggplot2::diamonds \%>\% 
-  mutate(depth2 = 100*2*z/(x+y)) \%>\% 
+df <- ggplot2::diamonds %>% 
+  mutate(depth2 = 100*2*z/(x+y)) %>% 
   observe_if(abs(depth-depth2) < 1)
 
 observations(df)
 
-df \%>\% 
-  stick_to(observations) \%@>\% 
-  mutate(Id = 2) \%@>\% 
-  select(Id, Status) \%>\% 
+df %>% 
+  stick_to(observations) %@>% 
+  mutate(Id = 2) %@>% 
+  select(Id, Status) %>% 
   unstick()
 
 observations(df)
+}
 
 }

@@ -8,8 +8,7 @@
 # @param env an environment in which to evaluate rhs parts.
 # @return a list with components \code{lhs}, \code{rhss}, and \code{pipes}.
 # @author Stefan Milton Bache and Hadley Wickham
-split_chain <- function(expr, env)
-{
+split_chain <- function(expr, env) {
   # lists for holding the right-hand sides and the pipe operators.
   rhss  <- list()
   pipes <- list()

@@ -57,8 +57,8 @@ chooses a specific attribute and returns it.
 library(dplyr)
 df <- data.frame(x = sample(10, 5, rep = TRUE),
                  y = sample(10, 5, rep = TRUE)) \%>\%
-  at_mutate(example="yes",
-            package="dplyr")
+  at_mutate(example = "yes",
+            package = "dplyr")
 tribe(df)
 
 at_slice(df, names)
@@ -71,7 +71,7 @@ df <- df \%>\%
 tribe(df)
 
 df <- df \%>\% 
-  at_mutate_(.dots = list(x =~ 2, y =~ c(3,4)))
+  at_mutate_(.dots = list(x = ~ 2, y = ~ c(3,4)))
 tribe(df)
 
 }

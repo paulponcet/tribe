@@ -31,13 +31,15 @@ expect that it always returns a named list (thus, when \code{attributes}
 will return \code{NULL}, \code{tribe} will return an empty named list).
 }
 \examples{
+\dontrun{
 library(lplyr)
-A <- c(x = 1, y = 2, z = 3) \%>\% 
+A <- c(x = 1, y = 2, z = 3) %>% 
   at_mutate(package = "trib?")
-A \%>\% 
-  tribe(keep_obj = TRUE) \%@>\% 
-  mutate(package = "tribe") \%>\% 
+A %>% 
+  tribe(keep_obj = TRUE) %@>% 
+  mutate(package = "tribe") %>% 
   untribe()
+}
 
 }
 \seealso{

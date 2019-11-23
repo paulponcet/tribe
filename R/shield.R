@@ -41,16 +41,15 @@
 #' @return 
 #' The object \code{obj} with possibly different attributes. 
 #' 
-#' @importFrom bazar is.empty
-#' @importFrom rlist list.merge
+#' @importFrom utils modifyList
 #' @export
 #' 
 #' @examples
 #' library(dplyr)
 #' df <- data.frame(x = sample(10, 5, rep = TRUE),
 #'                  y = sample(10, 5, rep = TRUE)) %>%
-#'   at_mutate(example="yes",
-#'             package="dplyr", 
+#'   at_mutate(example = "yes",
+#'             package = "dplyr", 
 #'             class = c("my_tbl", "data.frame"))
 #' tribe(df)
 #' 
@@ -73,10 +72,10 @@ function(obj,
          propagate = "some", 
          keep_also = NULL)
 {
-  if (bazar::is.empty(at)) return(obj)
+  if (is_empty(at)) return(obj)
 
   p <- propagate
-  if (bazar::is.empty(p)) p <- "some"
+  if (is_empty(p)) p <- "some"
   stopifnot(is.character(p) && 
               length(p) == 1L && 
               p %in% c("many", "all", "most", "some", "none"))
@@ -87,18 +86,18 @@ function(obj,
             call. = FALSE)
     tribe(obj) <- at   # very dangerous
   } else if (p == "most") {
-    tribe(obj) <- rlist::list.merge(at, tribe(obj))
+    tribe(obj) <- utils::modifyList(at, tribe(obj))
   } else if (p == "none") {
     warning("the call 'propagate = 'none' should be used with care, 
              see '?shield' for details", 
             call. = FALSE)
     tribe(obj) <- NULL # a bit dangerous too
   } else if (p == "many") {
-    tribe(obj) <- rlist::list.merge(tribe(obj), at)
+    tribe(obj) <- utils::modifyList(tribe(obj), at)
   }
     
   if (!is.null(keep_also))
-    tribe(obj) <- rlist::list.merge(tribe(obj), 
+    tribe(obj) <- utils::modifyList(tribe(obj), 
                                     at[intersect(names(at), keep_also)])
   
   #for (i in seq_along(keep_also)) {

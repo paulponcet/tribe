@@ -26,6 +26,7 @@
 #' @export
 #' 
 #' @examples 
+#' \dontrun{
 #' library(dplyr)
 #' library(observer)
 #' 
@@ -42,6 +43,7 @@
 #'   unstick()
 #' 
 #' observations(df)
+#' }
 #' 
 stick_to <- 
 function(obj, at)
